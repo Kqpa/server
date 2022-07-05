@@ -5,7 +5,7 @@ NEW_IP="$1"
 COMMIT_MESSAGE='updated the server IP address'
 
 if [ $# -eq 0 ]; then
-	echo "$0: new pi required as an argument" && exit 1
+	echo "$0: new ip required as an argument" && exit 1
 fi
 
 : > $FILE_NAME
