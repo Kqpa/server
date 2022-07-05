@@ -1,60 +1,60 @@
 :root {
-    font-family: "JetBrains Mono", sans-serif;
-  }
-  body {
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  .major-container {
-    position: absolute;
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    color: white;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .text {
-    text-align: center;
-    font-size: 3rem;
-    line-height: 1;
-    font-weight: 700;
-  }
-  
-  .button-container {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    margin-top: 0.5rem;
-  }
-  
-  
-  .button {
-    font-family: "JetBrains Mono", sans-serif;
-    width: 8rem;
-    padding: 0.5rem;
-    border: 1px solid;
-    border-color: rgb(255 255 255);
-    background-color: transparent;
-    color: white;
-    border-radius: 0.25rem;
-    transition-property: all;
-    transition-duration: 200ms;
-    transition-timing-function: linear;
-  }
-  
-  .button:hover {
-    border-color: rgb(255 255 255);
-    color: rgb(0 0 0);
-    background-color: rgb(255 255 255);
-  }
-  
-  .container {
-    margin-top: 0.5rem;
-    padding: 10px;
-    font-size: 13px;
-    text-align: center;
-  }
+  font-family: "JetBrains Mono", sans-serif;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.major-container {
+  position: absolute;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.button-container {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 1.2rem;
+}
+
+.button {
+  font-family: "JetBrains Mono", sans-serif;
+  width: 8rem;
+  padding: 0.5rem;
+  border: 1px solid;
+  border-color: rgb(255 255 255);
+  background-color: transparent;
+  color: white;
+  border-radius: 0.25rem;
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
+
+.button:hover {
+  border-color: rgb(255 255 255);
+  color: rgb(0 0 0);
+  background-color: rgb(255 255 255);
+}
+
+.container {
+  margin-top: 0.5rem;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+}

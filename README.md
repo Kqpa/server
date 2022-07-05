@@ -1,2 +1,8 @@
-# server
-ngrok server link for minecraft
+<div align="center">
+
+# [server.kqpa.me](https://server.kqpa.me)
+
+#### ngrok server link for the Minecraft Server
+
+
+</div>
