@@ -21,4 +21,3 @@ git add . && git pull && git commit -m "$COMMIT_MESSAGE" && git push
 echo "$0: successfully replaced the ip in '$FILE_NAME'"
 
 exit 0
-
