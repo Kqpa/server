@@ -1,12 +1,12 @@
-#!/bin/sh 
+#!/bin/sh
 
 FILE_NAME='./../data.json'
 
-NEW_COMMIT_MESSAGE='Updated the server IP address on `server.kqpa.me`'
 NEW_IP="$1"
+NEW_COMMIT_MESSAGE="Updated the server IP address on \`server.kqpa.me\` to \`$NEW_IP\`"
 
-DOWN_COMMIT_MESSAGE='Took the server down on `server.kqpa.me`'
 DOWN_MESSAGE="Server Down"
+DOWN_COMMIT_MESSAGE='Took the server down on `server.kqpa.me`'
 
 if [ $# -eq 0 ]; then
 	echo "usage: $0 <IP> # Updates server IP" && \
@@ -16,7 +16,7 @@ fi
 
 : > $FILE_NAME
 
-if [ $1 = "-s" ]; then
+if [ $NEW_IP = "-s" ]; then
 
 cat <<EOT >> $FILE_NAME
 {
