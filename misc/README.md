@@ -1,12 +1,17 @@
 <div align="center">
 
-# Miscellaneous scripts for the Minecraft Server
+## Miscellaneous Scripts for the Minecraft Server
 
-Source these to your `$PATH` by adding the following lines to your `~/.zshrc` or `~./.bashrc`:
+Export these scripts to your `$PATH` by adding the following line to your `~/.zshrc` or `~/.bashrc`.
+
+```sh
+export PATH="$HOME/Documents/Repositories/server/misc:$PATH"
+```
 
 </div>
 
-```sh
-# ~/.zshrc or ~/.bashrc
-export PATH="$HOME/Documents/Repositories/server/misc:$PATH"
-```
+<br>
+
+| Commands         | [`mc::ip`](./mc::ip)                                                                                      | [`mc::ngrok`](./mc::ngrok)                                                                           | [`mc::server`](./mc::server)                 | [`mc::tmux`](./mc::tmux)                                                                                                                                                      |
+|------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Descriptions** | Updates the IP address of the server address  over [`server.kqpa.me`](https://server.kqpa.me) | Creates a ngrok tunnel  with the port of 25565  (default Minecraft port) over Europe. | Starts the Minecraft server. | Starts the tmux session so that everything can continue to operate after shell logout. <br><br>**Startup Windows**: <br> • `server` <br> • `ngrok` <br> • `web` |
