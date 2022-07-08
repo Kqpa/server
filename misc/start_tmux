@@ -1,0 +1,7 @@
+#!/bin/sh 
+tmux new-session -s mc   -n server -d "cd ~/Documents/Minecraft/Server-1 && $SHELL -i"
+tmux new-window  -t mc:1 -n ngrok     "cd ~/Documents/Repositories/server/misc && $SHELL -i"
+tmux new-window  -t mc:2 -n web       "cd ~/Documents/Repositories/server/misc && $SHELL -i"
+
+tmux select-window -t mc:0
+tmux -2 attach-session -t mc
