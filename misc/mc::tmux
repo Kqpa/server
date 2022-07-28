@@ -1,7 +1,13 @@
-#!/bin/sh 
-tmux new-session -s mc   -n server -d "cd ~/Documents/Minecraft/Server-1 && $SHELL -i"
-tmux new-window  -t mc:1 -n ngrok     "cd ~/Documents/Repositories/server/misc && $SHELL -i"
-tmux new-window  -t mc:2 -n web       "cd ~/Documents/Repositories/server/misc && $SHELL -i"
+#!/bin/sh
+
+SERVERS_DIR="${HOME}/Documents/Minecraft" # Where the servers are located
+SERVER="Server-1" # Server folder name, will be concatenated with `SERVERS_DIR`
+WEBSITE_DIR="${HOME}/Documents/Repositories/server" # Repository for `server.kqpa.me`
+
+tmux new-session -s mc   -n server -d "cd ${SERVERS_DIR}/${SERVER}/Contents && $SHELL -i"
+tmux new-window  -t mc:1 -n ngrok     "cd ${WEBSITE_DIR}/misc && $SHELL -i"
+tmux new-window  -t mc:2 -n web       "cd ${WEBSITE_DIR}/misc && $SHELL -i"
+tmux new-window  -t mc:3 -n backup    "cd ${SERVERS_DIR}/${SERVER}/Backups && $SHELL -i"
 
 tmux select-window -t mc:0
 tmux -2 attach-session -t mc
