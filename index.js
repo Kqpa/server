@@ -14,11 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function copy() {
   const button = document.querySelector("#button");
-
   navigator.clipboard.writeText(text);
-
   button.innerText = "Copied to Clipboard";
-
   setTimeout(() => {
     button.innerText = "Copy";
   }, 3000);

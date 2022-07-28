@@ -9,5 +9,5 @@ tmux new-window  -t mc:1 -n ngrok     "cd ${WEBSITE_DIR}/misc && $SHELL -i"
 tmux new-window  -t mc:2 -n web       "cd ${WEBSITE_DIR}/misc && $SHELL -i"
 tmux new-window  -t mc:3 -n backup    "cd ${SERVERS_DIR}/${SERVER}/Backups && $SHELL -i"
 
-tmux select-window -t mc:0
+tmux    select-window  -t mc:0
 tmux -2 attach-session -t mc
