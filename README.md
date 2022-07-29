@@ -45,6 +45,8 @@ export PATH="$HOME/Documents/Repositories/server/scripts:$PATH"
 
 ## Commands
 
+</div>
+
 | Commands                          | Descriptions                                                                                                                                                                                                                 |
 |-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [`mc::ip`](./scripts/mc::ip)         | Updates the IP address of the server over [`server.kqpa.me`](https://server.kqpa.me)                                                                                                                                         |
@@ -52,5 +54,3 @@ export PATH="$HOME/Documents/Repositories/server/scripts:$PATH"
 | [`mc::server`](./scripts/mc::server) | Starts the Minecraft server.                                                                                                                                                                                                 |
 | [`mc::backup`](./scripts/mc::backup) | Backs up the current state of the Minecraft server at the `Backups` folder.                                                                                                                                                  |
 | [`mc::tmux`](./scripts/mc::tmux)     | Starts the tmux session so that everything can continue to operate after shell logout.  <br> <br> **Startup Windows**: <br>  • `[0]`: **server**  <br>  • `[1]`: **ngrok**  <br> • `[2]`: **web**  <br>  • `[3]`: **backup** |
-
-</div>
