@@ -25,7 +25,7 @@ cat <<EOT >> $FILE_NAME
 EOT
 
 git add -A :/ && git pull && git commit -m "$DOWN_COMMIT_MESSAGE" && git push
-echo "$(script_name -m) successfully replaced the IP in '$(md_text "$FILE_NAME" -b)' with '$(md_text $DOWN_MESSAGE -b)'"
+echo "$(script_name -m) successfully replaced the IP in '$(md_text "$FILE_NAME" -b)' with '$(md_text "$DOWN_MESSAGE" -b)'"
 
 else
 
