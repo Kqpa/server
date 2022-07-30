@@ -6,7 +6,7 @@ BACKUP_NAME="$(date +%Y-%m-%d_%H-%M-%S)"
 CURRENT_DIR="$(basename $(pwd))"
 PREVIOUS_DIR="$(basename $(dirname $(pwd)))"
 
-printf "$(script_name -m) Backing up '$(md_text $PREVIOUS_DIR -b)' as '$(md_text $BACKUP_NAME -b)' under '$(md_text $CURRENT_DIR -b)'... "
+printf "$(script_name -m) Backing up '$(md_text "$PREVIOUS_DIR" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$CURRENT_DIR" -b)'... "
 
 if cp -R ./../Contents "${BACKUP_NAME}"; then
     echo "OK"
@@ -15,4 +15,4 @@ else
 fi
 
 echo "$(script_name -m) New backup size: $(md_text $(du -sh "$BACKUP_NAME" | awk '{print $1}') -b)"
-echo "$(script_name -m) $CURRENT_DIR directory size: $(md_text $(du -sh . | awk '{print $1}') -b)"
+echo "$(script_name -m) "$CURRENT_DIR" directory size: $(md_text $(du -sh . | awk '{print $1}') -b)"
