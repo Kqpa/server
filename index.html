@@ -11,7 +11,68 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="main.css" />
+    <style>
+      :root {
+        font-family: "JetBrains Mono", sans-serif;
+      }
+
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .major-container {
+        position: absolute;
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        background-color: black;
+        color: white;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .text {
+        text-align: center;
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      .button-container {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 1.2rem;
+      }
+
+      .button {
+        font-family: "JetBrains Mono", sans-serif;
+        width: 8rem;
+        padding: 0.5rem;
+        border: 1px solid;
+        border-color: rgb(255 255 255);
+        background-color: transparent;
+        color: white;
+        border-radius: 0.25rem;
+        transition-property: all;
+        transition-duration: 200ms;
+        transition-timing-function: linear;
+      }
+
+      .button:hover {
+        border-color: rgb(255 255 255);
+        color: rgb(0 0 0);
+        background-color: rgb(255 255 255);
+      }
+
+      .container {
+        margin-top: 0.5rem;
+        padding: 10px;
+        font-size: 13px;
+        text-align: center;
+      }
+    </style>
     <meta content="Server IP" property="og:title" />
     <meta content="Minecraft Server IP" property="og:description" />
     <meta content="https://server.kqpa.me" property="og:url" />
@@ -28,16 +89,41 @@
         <div class="button-container">
           <button id="button" class="button" onclick="copy()">Copy</button>
         </div>
-        <div class="container">Go to 'Multiplayer -> Direct Connection' & paste the copied server IP address.
-          <br>
-          <br>
-          This server's IP address is dynamic — check this website to get the server IP. 
-          <br>
-	  <br>
-	  This server is whitelist only — contact Kqpa#0001 over Discord to get yourself whitelisted.
-	</div>
+        <div class="container">
+          Go to 'Multiplayer -> Direct Connection' & paste the copied server IP
+          address.
+          <br />
+          <br />
+          This server's IP address is dynamic — check this website to get the
+          server IP.
+          <br />
+          <br />
+          This server is whitelist only — contact Kqpa#0001 over Discord to get
+          yourself whitelisted.
+        </div>
       </div>
     </div>
   </body>
-  <script src="index.js"></script>
+  <script>
+    let text = "";
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("./data.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          text = data.text;
+          const copyText = document.querySelector("#copyText");
+          copyText.innerText = text;
+        });
+    });
+    function copy() {
+      const button = document.querySelector("#button");
+      navigator.clipboard.writeText(text);
+      button.innerText = "Copied to Clipboard";
+      setTimeout(() => {
+        button.innerText = "Copy";
+      }, 3000);
+    }
+  </script>
 </html>
