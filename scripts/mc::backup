@@ -1,3 +1,13 @@
 #!/bin/sh
 
-cp -R ./../Contents $(date +%Y-%m-%d_%H-%M-%S)
+BACKUP_NAME="$(date +%Y-%m-%d_%H-%M-%S)"
+CURRENT_DIR="$(basename $(pwd))"
+PREVIOUS_DIR="$(basename $(dirname $(pwd)))"
+
+printf "[mc::backup]: Backing up '$PREVIOUS_DIR' as '$BACKUP_NAME' under '$CURRENT_DIR'... "
+
+if cp -R ./../Contents "${BACKUP_NAME}"; then
+    echo "OK"; else; exit 1
+fi
+
+echo "[mc::backup]: $CURRENT_DIR size: $(du -sh . | awk '{print $1}')"

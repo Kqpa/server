@@ -10,8 +10,8 @@ DOWN_MESSAGE="Server Down"
 DOWN_COMMIT_MESSAGE="Took the server down on \`server.kqpa.me\`"
 
 if [ $# -eq 0 ]; then
-	echo "usage: $SCRIPT_NAME <IP> # Updates server IP" && \
-	echo "usage: $SCRIPT_NAME -s   # Stops the server" && \
+	echo "[mc::ip]: $SCRIPT_NAME <IP> # Updates server IP" && \
+	echo "[mc::ip]: $SCRIPT_NAME -s   # Stops the server" && \
 	exit 1
 fi
 
@@ -26,7 +26,7 @@ cat <<EOT >> $FILE_NAME
 EOT
 
 git add -A :/ && git pull && git commit -m "$DOWN_COMMIT_MESSAGE" && git push
-echo "$SCRIPT_NAME: successfully replaced the IP in '$FILE_NAME' with '$DOWN_MESSAGE'"
+echo "[mc::ip]: successfully replaced the IP in '$FILE_NAME' with '$DOWN_MESSAGE'"
 
 else
 
@@ -37,7 +37,7 @@ cat <<EOT >> $FILE_NAME
 EOT
 
 git add -A :/ && git pull && git commit -m "$NEW_COMMIT_MESSAGE" && git push
-echo "$SCRIPT_NAME: successfully replaced the IP in '$FILE_NAME' with '$NEW_IP'"
+echo "[mc::ip]: successfully replaced the IP in '$FILE_NAME' with '$NEW_IP'"
 
 fi
 
