@@ -1,0 +1,8 @@
+script_name()
+{
+    if [[ "$1" == '-m' ]]; then
+        printf "[$(md_text $(basename $0))]:"
+    else
+        printf "$(basename $0)"
+    fi
+}

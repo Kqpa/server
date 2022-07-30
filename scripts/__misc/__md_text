@@ -1,0 +1,12 @@
+md_text()
+{
+    if [[ "$2" == '-b' ]]; then
+        printf "\033[1m${1}\033[0m"
+    elif [[ "$2" == '-u' ]]; then
+        printf "\033[4m${1}\033[0m"
+    elif [[ "$2" == '-n' ]]; then
+        printf "${1}"
+    else
+        printf "\033[1;4m${1}\033[0m"
+    fi
+}

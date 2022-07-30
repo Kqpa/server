@@ -1,17 +1,16 @@
 #!/bin/sh
 
-FILE_NAME='./../data.json'
-SCRIPT_NAME="$(basename $0)"
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__misc/__misc"
 
+FILE_NAME='./../data.json'
 NEW_IP="$1"
 NEW_COMMIT_MESSAGE="Updated the server IP address to \`$NEW_IP\`"
-
 DOWN_MESSAGE="Server Down"
 DOWN_COMMIT_MESSAGE="Took the server down on \`server.kqpa.me\`"
 
 if [ $# -eq 0 ]; then
-	echo "[mc::ip]: $SCRIPT_NAME <IP> # Updates server IP" && \
-	echo "[mc::ip]: $SCRIPT_NAME -s   # Stops the server" && \
+	echo "$(script_name -m) $(script_name) <ip> $(md_text '|' -b) Updates server IP" && \
+	echo "$(script_name -m) $(script_name) -s   $(md_text '|' -b) Stops the server" && \
 	exit 1
 fi
 
@@ -26,7 +25,7 @@ cat <<EOT >> $FILE_NAME
 EOT
 
 git add -A :/ && git pull && git commit -m "$DOWN_COMMIT_MESSAGE" && git push
-echo "[mc::ip]: successfully replaced the IP in '$FILE_NAME' with '$DOWN_MESSAGE'"
+echo "$(script_name -m) successfully replaced the IP in '$(md_text $FILE_NAME -b)' with '$(md_text $DOWN_MESSAGE -b)'"
 
 else
 
@@ -37,7 +36,7 @@ cat <<EOT >> $FILE_NAME
 EOT
 
 git add -A :/ && git pull && git commit -m "$NEW_COMMIT_MESSAGE" && git push
-echo "[mc::ip]: successfully replaced the IP in '$FILE_NAME' with '$NEW_IP'"
+echo "$(script_name -m) successfully replaced the IP in '$(md_text $FILE_NAME -b)' with '$(md_text $NEW_IP -b)'"
 
 fi
 
