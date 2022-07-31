@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__misc/__misc"
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__main"
 
 BACKUP_NAME="$(date +%Y-%m-%d_%H-%M-%S)"
 CURRENT_DIR="$(basename $(pwd))"

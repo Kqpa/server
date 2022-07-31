@@ -1,0 +1,2 @@
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
