@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__main"
-discord.sh() { source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" }
+discord.sh() { 
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
+}
 
 FILE_NAME='./../data.json'
 NEW_IP="$1"
