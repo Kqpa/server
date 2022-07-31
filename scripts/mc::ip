@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__main"
-discord.sh() { 
-source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
+
+discord.sh() 
+{ 
+    source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
 }
 
+SEND_DISCORD="true"
 FILE_NAME='./../data.json'
 NEW_IP="$1"
 NEW_COMMIT_MESSAGE="Updated the server IP address to \`$NEW_IP\`"
@@ -43,32 +46,34 @@ echo "$(script_name -m) successfully replaced the IP in '$(md_text "$FILE_NAME" 
 
 fi
 
-# "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/mc::discord" $NEW_IP
+if [[ $SEND_DISCORD == "true" ]]; then
 
-echo "$(script_name -m) Sending IP update to Discord..."
+    echo "$(script_name -m) Sending IP update to Discord..."
 
-WEBHOOK_URL="https://discord.com/api/webhooks/1003357285789220924/ZMRoKdPGp-m--UAE2oGactFx6pq6rgM7rGqgwpT4Fo75PQWxim_v4hb_p8akN80e3EQp"
-TITLE="IP adresi güncellendi"
-if [[ "$NEW_IP" == "-s" ]]; then
-	DESCRIPTION="• **Sunucu şu anda __kapalı__**."
-else
-	DESCRIPTION="• **Sunucunun IP adresi güncellendi**:\n__\`$NEW_IP\`__"
+    WEBHOOK_URL="https://discord.com/api/webhooks/1003357285789220924/ZMRoKdPGp-m--UAE2oGactFx6pq6rgM7rGqgwpT4Fo75PQWxim_v4hb_p8akN80e3EQp"
+    TITLE="IP adresi güncellendi"
+    if [[ "$NEW_IP" == "-s" ]]; then
+        DESCRIPTION="• **Sunucu şu anda __kapalı__**."
+    else
+        DESCRIPTION="• **Sunucunun IP adresi güncellendi**:\n__\`$NEW_IP\`__"
+    fi
+    COLOR="0xfcba03"
+    IMAGE_URL="https://i.imgur.com/hIOfppt.png"
+    LINK="https://server.kqpa.me"
+    AUTHOR="Blaze SMP"
+    FOOTER="Otomatik Bildirim"
+
+    discord.sh                              \
+        --webhook-url       "$WEBHOOK_URL"  \
+        --title             "$TITLE"        \
+        --description       "$DESCRIPTION"  \
+        --color             "$COLOR"        \
+        --url               "$LINK"         \
+        --author            "$AUTHOR"       \
+        --author-url        "$LINK"         \
+        --author-icon       "$IMAGE_URL"    \
+        --thumbnail         "$IMAGE_URL"    \
+        --footer            "$FOOTER"       \
+        --timestamp
+
 fi
-COLOR="0xfcba03"
-IMAGE_URL="https://i.imgur.com/hIOfppt.png"
-LINK="https://server.kqpa.me"
-AUTHOR="Blaze SMP"
-FOOTER="Otomatik Bildirim"
-
-discord.sh                              \
-    --webhook-url       "$WEBHOOK_URL"  \
-    --title             "$TITLE"        \
-    --description       "$DESCRIPTION"  \
-    --color             "$COLOR"        \
-    --url               "$LINK"         \
-    --author            "$AUTHOR"       \
-    --author-url        "$LINK"         \
-    --author-icon       "$IMAGE_URL"    \
-    --thumbnail         "$IMAGE_URL"    \
-    --footer            "$FOOTER"       \
-    --timestamp
