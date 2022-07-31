@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__main"
+discord.sh() { source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" }
 
 FILE_NAME='./../data.json'
 NEW_IP="$1"
@@ -16,7 +17,7 @@ fi
 
 : > $FILE_NAME
 
-if [ $NEW_IP = "-s" ]; then
+if [ $1 = "-s" ]; then
 
 cat <<EOT >> $FILE_NAME
 {
@@ -44,14 +45,9 @@ fi
 
 echo "$(script_name -m) Sending IP update to Discord..."
 
-discord.sh()
-{
-    source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord"
-}
-
 WEBHOOK_URL="https://discord.com/api/webhooks/1003357285789220924/ZMRoKdPGp-m--UAE2oGactFx6pq6rgM7rGqgwpT4Fo75PQWxim_v4hb_p8akN80e3EQp"
 TITLE="IP adresi güncellendi"
-if [[ "$NEW_IP" == "$DOWN_MESSAGE" ]]; then
+if [[ "$NEW_IP" == "-s" ]]; then
 	DESCRIPTION="• **Sunucu şu anda __kapalı__**."
 else
 	DESCRIPTION="• **Sunucunun IP adresi güncellendi**:\n__\`$NEW_IP\`__"
