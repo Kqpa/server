@@ -3,6 +3,10 @@
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
 
-echo "$(script_name -m) Starting the ngrok tunnel..."
+printf "$(script_name -m) Starting the ngrok tunnel... "
 
-ngrok tcp --region=eu 25565
+if ngrok tcp --region=eu 25565; then
+    echo "OK."
+else
+    exit 1
+fi

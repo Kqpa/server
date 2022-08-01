@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-NEW_IP="$1"
-
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
+
+discord.sh() 
+{
+    source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
+}
 
 if [ $# -eq 0 ]; then
 	echo "$(script_name -m) $(script_name) <ip> $(md_text '|' -b) Notifies the new IP" && \
@@ -11,11 +14,7 @@ if [ $# -eq 0 ]; then
 	exit
 fi
 
-discord.sh() 
-{
-    source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
-}
-
+NEW_IP="$1"
 WEBHOOK_URL="https://discord.com/api/webhooks/1003357285789220924/ZMRoKdPGp-m--UAE2oGactFx6pq6rgM7rGqgwpT4Fo75PQWxim_v4hb_p8akN80e3EQp"
 TITLE="IP adresi güncellendi"
 COLOR="0xfcba03"

@@ -23,12 +23,16 @@ printf "$(script_name -m) Replacing IP in '$(md_text "$FILE_NAME" -b) with '$(md
 
 if (
 : > $FILE_NAME
+
 cat <<EOT >> $FILE_NAME
 {
 	"text": "$NEW_IP"
 }
 EOT
-git add -A :/ && git pull --quiet && git commit -m "$COMMIT_MESSAGE" --quiet && git push --quiet); then
+
+git add -A :/ && git pull --quiet && git commit -m "$COMMIT_MESSAGE" --quiet && git push --quiet
+
+); then
 	echo "OK."
 else
 	exit 1
