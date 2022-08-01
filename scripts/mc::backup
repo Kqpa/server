@@ -10,7 +10,7 @@ PREVIOUS_DIR="$(basename $(dirname $(pwd)))"
 printf "$(script_name -m) Backing up '$(md_text "$PREVIOUS_DIR" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$CURRENT_DIR" -b)'... "
 
 if cp -R ./../Contents "${BACKUP_NAME}"; then
-    echo "OK"
+    echo "OK."
 else
     exit 1
 fi
