@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+NEW_IP="$1"
+
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
+
+discord.sh() 
+{
+    source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
+}
+
+echo "$(script_name -m) Sending IP update to Discord..."
+
+WEBHOOK_URL="https://discord.com/api/webhooks/1003357285789220924/ZMRoKdPGp-m--UAE2oGactFx6pq6rgM7rGqgwpT4Fo75PQWxim_v4hb_p8akN80e3EQp"
+TITLE="IP adresi güncellendi"
+if [[ "$NEW_IP" == "-s" ]]; then
+    # Message when the server is down
+    DESCRIPTION="• **Sunucu şu anda __kapalı__**."
+else
+    # Message when the server IP is updated
+    DESCRIPTION="• **Sunucunun IP adresi güncellendi**:\n__\`$NEW_IP\`__"
+fi
+COLOR="0xfcba03"
+IMAGE_URL="https://i.imgur.com/hIOfppt.png"
+LINK="https://server.kqpa.me"
+AUTHOR="Blaze SMP"
+FOOTER="Otomatik Bildirim"
+
+discord.sh                              \
+    --webhook-url       "$WEBHOOK_URL"  \
+    --title             "$TITLE"        \
+    --description       "$DESCRIPTION"  \
+    --color             "$COLOR"        \
+    --url               "$LINK"         \
+    --author            "$AUTHOR"       \
+    --author-url        "$LINK"         \
+    --author-icon       "$IMAGE_URL"    \
+    --thumbnail         "$IMAGE_URL"    \
+    --footer            "$FOOTER"       \
+    --timestamp
