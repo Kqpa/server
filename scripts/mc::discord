@@ -2,15 +2,11 @@
 
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
-
-discord.sh() 
-{
-    source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
-}
+source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__discord" 
 
 if [ $# -eq 0 ]; then
-	echo "$(script_name -m) $(script_name) <ip> $(md_text '|' -b) Notifies the new IP" && \
-	echo "$(script_name -m) $(script_name) -s   $(md_text '|' -b) Notifies that " && \
+	echo "$(script_name -m) $(script_name) <ip> $(md_text '|' -b) Updates server IP" && \
+	echo "$(script_name -m) $(script_name) -s   $(md_text '|' -b) Stops the server" && \
 	exit
 fi
 

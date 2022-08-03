@@ -5,18 +5,18 @@ source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__sc
 
 FILE_NAME='./../data.json'
 
+if [ $# -eq 0 ]; then
+	echo "$(script_name -m) $(script_name) <ip> $(md_text '|' -b) Updates server IP" && \
+	echo "$(script_name -m) $(script_name) -s   $(md_text '|' -b) Stops the server" && \
+	exit
+fi
+
 if [[ "$1" == '-s' ]]; then
 	NEW_IP="Server Down"
 	COMMIT_MESSAGE="Took the server down on \`server.kqpa.me\`"
 else
 	NEW_IP="$1"
 	COMMIT_MESSAGE="Updated the server IP address to \`$NEW_IP\`"
-fi
-
-if [ $# -eq 0 ]; then
-	echo "$(script_name -m) $(script_name) <ip> $(md_text '|' -b) Updates server IP" && \
-	echo "$(script_name -m) $(script_name) -s   $(md_text '|' -b) Stops the server" && \
-	exit
 fi
 
 printf "$(script_name -m) Replacing IP in '$(md_text "$FILE_NAME" -b) with '$(md_text "$NEW_IP" -b)'... "
