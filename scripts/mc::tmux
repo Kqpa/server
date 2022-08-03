@@ -7,7 +7,8 @@ WEBSITE_DIR="${HOME}/Documents/Repositories/server" # Repository for `server.kqp
 tmux new-session -s mc   -n server -d "cd ${SERVERS_DIR}/${SERVER}/Contents && $SHELL -i"
 tmux new-window  -t mc:1 -n ngrok     "cd ${WEBSITE_DIR}/scripts && $SHELL -i"
 tmux new-window  -t mc:2 -n web       "cd ${WEBSITE_DIR}/scripts && $SHELL -i"
-tmux new-window  -t mc:3 -n backup    "cd ${SERVERS_DIR}/${SERVER}/Backups && $SHELL -i"
+tmux new-window  -t mc:3 -n discord   "cd ${WEBSITE_DIR}/scripts && $SHELL -i"
+tmux new-window  -t mc:4 -n backup    "cd ${SERVERS_DIR}/${SERVER}/Backups && $SHELL -i"
 
 tmux    select-window  -t mc:0
 tmux -2 attach-session -t mc

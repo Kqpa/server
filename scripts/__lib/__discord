@@ -1,5 +1,6 @@
 # Discord.sh - Discord on command-line
 # by ChaoticWeg and fieu
+# GitHub: https://github.com/ChaoticWeg/discord.sh
 
 shopt -s lastpipe   # avoid subshell weirdness hopefully
 shopt -so pipefail  # hopefully correctly get $? in substitution

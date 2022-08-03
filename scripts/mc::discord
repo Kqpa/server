@@ -40,8 +40,7 @@ if (
             --thumbnail         "$IMAGE_URL"    \
             --footer            "$FOOTER"       \
             --timestamp
-    )
-then
+); then
     echo "OK."
 else
     exit 1
