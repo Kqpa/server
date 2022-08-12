@@ -24,9 +24,9 @@ else
     exit 1
 fi
 
-printf "$(script_name -m) Deleting $BACKUP_NAME... "
+printf "$(script_name -m) Deleting '$(md_text "$BACKUP_NAME" -b)'... "
 
-if rm -rf $BACKUP_NAME; then
+if rm -rf $BACKUP_NAME && CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}'); then
     echo "OK."
 else
     exit 1
@@ -34,4 +34,4 @@ fi
 
 echo "$(script_name -m) Uncompressed backup size: $(md_text $BACKUP_SIZE -b)"
 echo "$(script_name -m) Compressed backup size: $(md_text $COMPRESSED_BACKUP_SIZE -b)"
-echo "$(script_name -m) "$CURRENT_DIR" directory size: $(md_text $(du -sh . | awk '{print $1}') -b)"
+echo "$(script_name -m) "$(basename $(pwd))" directory size: $(md_text $CURRENT_DIR_SIZE -b)"
