@@ -4,16 +4,26 @@ source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
 
 BACKUP_NAME="$(date +%Y-%m-%d_%H-%M-%S)"
+COMPRESSED_BACKUP_NAME="$BACKUP_NAME.tar.gz"
 CURRENT_DIR="$(basename $(pwd))"
 PREVIOUS_DIR="$(basename $(dirname $(pwd)))"
 
 printf "$(script_name -m) Backing up '$(md_text "$PREVIOUS_DIR" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$CURRENT_DIR" -b)'... "
 
-if cp -R ./../Contents "${BACKUP_NAME}"; then
+if cp -R ./../Contents "${BACKUP_NAME}" && BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}'); then
     echo "OK."
 else
     exit 1
 fi
 
-echo "$(script_name -m) New backup size: $(md_text $(du -sh "$BACKUP_NAME" | awk '{print $1}') -b)"
+printf "$(script_name -m) Compressing $BACKUP_NAME... "
+
+if tar -czvf "$COMPRESSED_BACKUP_NAME" "$BACKUP_NAME" && COMPRESSED_BACKUP_SIZE=$(du -sh "$COMPRESSED_BACKUP_NAME" | awk '{print $1}'); then
+    echo "OK."
+else
+    exit 1
+fi
+
+echo "$(script_name -m) Uncompressed backup size: $(md_text $BACKUP_SIZE -b)"
+echo "$(script_name -m) Compressed backup size: $(md_text $COMPRESSED_BACKUP_SIZE -b)"
 echo "$(script_name -m) "$CURRENT_DIR" directory size: $(md_text $(du -sh . | awk '{print $1}') -b)"
