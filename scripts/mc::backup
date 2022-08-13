@@ -3,35 +3,18 @@
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
 
-BACKUP_NAME="$(date +%Y-%m-%d_%H-%M-%S)"
-COMPRESSED_BACKUP_NAME="$BACKUP_NAME.tar.gz"
+BACKUP_NAME="$(date +%Y-%m-%d_%H-%M-%S).tar.gz"
 BACKUP_SIZE=0
-COMPRESSED_BACKUP_SIZE=0
 
-printf "$(script_name -m) Backing up '$(md_text "$(basename $(dirname $(pwd)))" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$(basename $(pwd))" -b)'... "
+printf "$(script_name -m) Compressing & backing up '$(md_text "$(basename $(dirname $(pwd)))" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$(basename $(pwd))" -b)'... "
 
-if cp -R ./../Contents "${BACKUP_NAME}" && BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}'); then
+if tar -czf "$BACKUP_NAME" ./../Contents && \
+             BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}') && \
+             CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}'); then
     echo "OK."
 else
     exit 1
 fi
 
-printf "$(script_name -m) Compressing '$(md_text "$BACKUP_NAME" -b)' as '$(md_text "$COMPRESSED_BACKUP_NAME" -b)'... "
-
-if tar -czf "$COMPRESSED_BACKUP_NAME" "$BACKUP_NAME" && COMPRESSED_BACKUP_SIZE=$(du -sh "$COMPRESSED_BACKUP_NAME" | awk '{print $1}'); then
-    echo "OK."
-else
-    exit 1
-fi
-
-printf "$(script_name -m) Deleting '$(md_text "$BACKUP_NAME" -b)'... "
-
-if rm -rf $BACKUP_NAME && CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}'); then
-    echo "OK."
-else
-    exit 1
-fi
-
-echo "$(script_name -m) Uncompressed backup size: $(md_text $BACKUP_SIZE -b)"
-echo "$(script_name -m) Compressed backup size: $(md_text $COMPRESSED_BACKUP_SIZE -b)"
+echo "$(script_name -m) Compressed backup size: $(md_text $BACKUP_SIZE -b)"
 echo "$(script_name -m) "$(basename $(pwd))" directory size: $(md_text $CURRENT_DIR_SIZE -b)"
