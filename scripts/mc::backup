@@ -5,17 +5,16 @@ source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__sc
 
 DATE="$(date +%Y-%m-%d_%H-%M-%S)"
 BACKUP_NAME="$DATE.tar.gz"
-TMP_NAME="$DATE.tmp"
+TMP_NAME="$DATE"
 
 printf "$(script_name -m) Compressing & backing up '$(md_text "$(basename $(dirname $(pwd)))" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$(basename $(pwd))" -b)'... "
 
-if (
-        cp -R ./../Contents "$TMP_NAME" && \
-        tar -czf "$BACKUP_NAME" "$TMP_NAME" && \
-        rm -rf "$TMP_NAME" && \
-        BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}') && \
-        CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}')
-); then
+if cp -R ./../Contents "$TMP_NAME" && \
+   tar -czf "$BACKUP_NAME" "$TMP_NAME" && \
+   rm -rf "$TMP_NAME" && \
+   BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}') && \
+   CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}')
+then
     echo "OK."
 else
     exit 1
