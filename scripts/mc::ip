@@ -19,7 +19,7 @@ else
 	COMMIT_MESSAGE="Updated the server IP address to \`$NEW_IP\`"
 fi
 
-printf "$(script_name -m) Replacing IP in '$(md_text "$FILE_NAME" -b) with '$(md_text "$NEW_IP" -b)'... "
+printf "$(script_name -m) Replacing IP in '$(md_text "$FILE_NAME" -b)' with '$(md_text "$NEW_IP" -b)'... "
 
 if (
 : > $FILE_NAME
