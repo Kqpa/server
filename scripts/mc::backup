@@ -3,22 +3,36 @@
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__md_text"
 source "$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)/__lib/__script_name"
 
-DATE="$(date +%Y-%m-%d_%H-%M-%S)"
-BACKUP_NAME="$DATE.tar.gz"
-TMP_NAME="$DATE"
+if [[ "$1" == '-l' ]]; then
 
-printf "$(script_name -m) Compressing & backing up '$(md_text "$(basename $(dirname $(pwd)))" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$(basename $(pwd))" -b)'... "
+    echo "$(script_name -m) "$(basename $(pwd))" directory size: $(md_text $(du -sh . | awk '{print $1}') -b)"
+    \ls -Alrth | tail -n +2 | awk '{
+        if ($9 ~ /SERVER_RESET/)
+            print "\033[1m"$9"\033[0m", "[\033[1;4m"$5"\033[0m]"
+        else
+            print "\033[1;31m"$9"\033[0m", "[\033[1;4m"$5"\033[0m]"
+    }' | nl -s': ' | column -t
 
-if cp -R ./../Contents "$TMP_NAME" && \
-   tar -czf "$BACKUP_NAME" "$TMP_NAME" && \
-   rm -rf "$TMP_NAME" && \
-   BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}') && \
-   CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}')
-then
-    echo "OK."
 else
-    exit 1
-fi
 
-echo "$(script_name -m) Compressed backup size: $(md_text $BACKUP_SIZE -b)"
-echo "$(script_name -m) "$(basename $(pwd))" directory size: $(md_text $CURRENT_DIR_SIZE -b)"
+    DATE="$(date +%Y-%m-%d_%H-%M-%S)"
+    BACKUP_NAME="$DATE.tar.gz"
+    TMP_NAME="$DATE"
+
+    printf "$(script_name -m) Compressing & backing up '$(md_text "$(basename $(dirname $(pwd)))" -b)' as '$(md_text "$BACKUP_NAME" -b)' under '$(md_text "$(basename $(pwd))" -b)'... "
+
+    if cp -R ./../Contents "$TMP_NAME" && \
+    tar -czf "$BACKUP_NAME" "$TMP_NAME" && \
+    rm -rf "$TMP_NAME" && \
+    BACKUP_SIZE=$(du -sh "$BACKUP_NAME" | awk '{print $1}') && \
+    CURRENT_DIR_SIZE=$(du -sh . | awk '{print $1}')
+    then
+        echo "OK."
+    else
+        exit 1
+    fi
+
+    echo "$(script_name -m) Compressed backup size: $(md_text $BACKUP_SIZE -b)"
+    echo "$(script_name -m) "$(basename $(pwd))" directory size: $(md_text $CURRENT_DIR_SIZE -b)"
+
+fi
