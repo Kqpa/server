@@ -11,7 +11,7 @@ if [ $# -eq 0 ]; then
 fi
 
 NEW_IP="$1"
-WEBHOOK_URL="https://discord.com/api/webhooks/1003357285789220924/ZMRoKdPGp-m--UAE2oGactFx6pq6rgM7rGqgwpT4Fo75PQWxim_v4hb_p8akN80e3EQp"
+WEBHOOK_URL=""
 TITLE="IP adresi güncellendi"
 COLOR="0xfcba03"
 IMAGE_URL="https://i.imgur.com/hIOfppt.png"
